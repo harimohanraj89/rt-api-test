@@ -1,0 +1,13 @@
+<%= render "form" %>
+
+<% if @output.present? %>
+	<h3><%= @output['title'] %></h3>
+	<ul>
+		<li><%= @output['year'] %></li>
+		<li><%= @output['mpaa_rating'] %></li>
+		<li><%= "#{@output['runtime']} min" %></li>
+		<li><%= @output['critics_consensus'] %></li>
+	</ul>
+<% else %>
+	Nothing matches your search!
+<% end %>

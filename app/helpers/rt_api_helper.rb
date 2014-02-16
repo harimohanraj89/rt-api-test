@@ -1,0 +1,2 @@
+module RtApiHelper
+end
