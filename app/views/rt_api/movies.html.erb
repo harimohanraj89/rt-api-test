@@ -1,8 +1,3 @@
-<form action="/search" method="get">
-  <input type="text" name="q">
-  <input type="submit" value="Search!">
-</form>
-
 <% if @movie.present? %>
   <h3><%= @movie['title'] %> (<%= @movie['year'] %>)</h3>
   <img src="<%= @movie['posters']['detailed'] %>" />

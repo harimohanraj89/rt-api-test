@@ -1,11 +1,6 @@
-<form action="/search" method="get">
-  <input type="text" name="q">
-  <input type="submit" value="Search!">
-</form>
-
 <% if @results %>
 	<% @results.each do |result| %>
-		<h3><a href="/movies/<%= result['id'] %>"><%= result['title'] %> (<%= result['year'] %>)</a></h3>
+		<h3><%= @message %><a href="/movies/<%= result['id'] %>"><%= result['title'] %> (<%= result['year'] %>)</a></h3>
 		<img src="<%= result['posters']['profile'] %>" />
 		<ul>
 			<li><%= result['abridged_cast'].map{|c| c['name']}.join(', ') %></li>
@@ -16,3 +11,5 @@
 <% else %>
 	Nothing matches your search!
 <% end %>
+
+
