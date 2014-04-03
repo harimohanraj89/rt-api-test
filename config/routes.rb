@@ -6,6 +6,7 @@ RtApiExample::Application.routes.draw do
   root 'rt_api#index'
 
   get 'search' => 'rt_api#search'
+  get 'movies/:id' => 'rt_api#movies'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -41,7 +42,7 @@ RtApiExample::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'

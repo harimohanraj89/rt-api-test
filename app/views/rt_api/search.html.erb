@@ -1,13 +1,18 @@
-<%= render "form" %>
+<form action="/search" method="get">
+  <input type="text" name="q">
+  <input type="submit" value="Search!">
+</form>
 
-<% if @output.present? %>
-	<h3><%= @output['title'] %></h3>
-	<ul>
-		<li><%= @output['year'] %></li>
-		<li><%= @output['mpaa_rating'] %></li>
-		<li><%= "#{@output['runtime']} min" %></li>
-		<li><%= @output['critics_consensus'] %></li>
-	</ul>
+<% if @results %>
+	<% @results.each do |result| %>
+		<h3><a href="/movies/<%= result['id'] %>"><%= result['title'] %> (<%= result['year'] %>)</a></h3>
+		<img src="<%= result['posters']['profile'] %>" />
+		<ul>
+			<li><%= result['abridged_cast'].map{|c| c['name']}.join(', ') %></li>
+			<li><%= result['mpaa_rating'] %></li>
+			<li><%= "#{result['runtime']} min" %></li>
+		</ul>
+	<% end %>
 <% else %>
 	Nothing matches your search!
 <% end %>

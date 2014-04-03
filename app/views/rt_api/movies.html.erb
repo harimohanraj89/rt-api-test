@@ -1,0 +1,17 @@
+<form action="/search" method="get">
+  <input type="text" name="q">
+  <input type="submit" value="Search!">
+</form>
+
+<% if @movie.present? %>
+  <h3><%= @movie['title'] %> (<%= @movie['year'] %>)</h3>
+  <img src="<%= @movie['posters']['detailed'] %>" />
+  <ul>
+    <li><%= @movie['abridged_cast'].map{|c| c['name']}.join(', ') %></li>
+    <li><%= @movie['mpaa_rating'] %></li>
+    <li><%= "#{@movie['runtime']} min" %></li>
+    <li><%= "#{@movie['synopsis']} min" %></li>
+  </ul>
+<% else %>
+  Nothing matches your search!
+<% end %>
