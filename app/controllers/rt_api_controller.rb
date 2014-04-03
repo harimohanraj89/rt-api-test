@@ -1,21 +1,16 @@
-require 'open-uri'
-
 class RtApiController < ApplicationController
+
+  @@num_results = 10
 
 	def index
 	end
 
 	def search
-		@query = params[:q].downcase.split.join('+')
-		@raw_response = HTTParty.get("http://api.rottentomatoes.com/api/public/v1.0/movies.json?q=#{URI.escape(query)}&page_limit=10&apikey=#{ENV["ROTTEN_TOMATOES_API_KEY"]}")
-    response = JSON.parse(raw_response)
-    @results = response['movies']
+    @results = RottenTomatoes.search(params[:q], @@num_results)
 	end
 
   def movies
-    @movie_id = params[:id]
-    @raw_response = HTTParty.get("http://api.rottentomatoes.com/api/public/v1.0/movies/#{movie_id}.json?apikey=#{ENV["ROTTEN_TOMATOES_API_KEY"]}")
-    @movie = JSON.parse(raw_response)
+    @movie = RottenTomatoes.movie(params[:id])
   end
 
 end
